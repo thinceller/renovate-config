@@ -1,0 +1,19 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", "customManagers:biomeVersions"],
+  "schedule": ["every weekend"],
+  "labels": ["dependencies"],
+  "prHourlyLimit": 5,
+  "prConcurrentLimit": 20,
+  "major": { "minimumReleaseAge": "7 days" },
+  "minor": { "minimumReleaseAge": "3 days" },
+  "patch": {
+    "minimumReleaseAge": "2 days",
+    "automerge": true,
+    "labels": ["dependencies", "automerge: enabled"]
+  },
+  "packageRules": [
+    { "matchPackageNames": "@opennextjs/*", "groupName": "OpenNext packages" },
+    { "matchPackageNames": ["/^textlint/", "@textlint/*"], "groupName": "textlint packages" }
+  ]
+}

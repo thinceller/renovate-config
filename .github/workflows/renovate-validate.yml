@@ -1,0 +1,19 @@
+name: Validate Renovate presets
+on:
+  pull_request:
+    paths:
+      - "*.json"
+      - "*.json5"
+      - ".github/workflows/renovate-validate.yml"
+  push:
+    branches: [ main ]
+    paths:
+      - "*.json"
+      - "*.json5"
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate
+        run: npx --yes -p renovate renovate-config-validator --strict
